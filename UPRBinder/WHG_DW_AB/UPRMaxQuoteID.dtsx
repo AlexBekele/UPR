@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="UPRMaxQuoteID"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{788C9136-1F02-4C6A-AC68-992B82EB8FED}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{178934A6-359A-4EEA-A46F-71D12FE91B1C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -299,7 +299,7 @@
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">declare @pif datetime
 declare @st datetime
 declare @ed datetime
-select @pif = '12/31/2022'
+select @pif = getdate ()
 select @st = dateadd(day,-1800,@pif)
 select @ed = dateadd(day,1800,@pif)
 SELECT 

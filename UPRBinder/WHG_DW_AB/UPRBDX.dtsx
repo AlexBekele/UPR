@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{800A8C59-C2C9-463F-8A7E-E2C431030E2E}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{95DF6EF4-CF45-43F9-9964-274BC2E18FEA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -334,7 +334,7 @@
 declare @pif datetime
 declare @st datetime
 declare @ed datetime
-select @pif = '12/31/2022'
+select @pif = getdate ()
 select @st = dateadd(day,-1800,@pif)
 select @ed = dateadd(day,1800,@pif)
 select 
@@ -600,13 +600,13 @@ group by bdx.QuoteID</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="173,42"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="286,432.249997852991" />
-        <NodeLayout
           Size="153.5,42"
           Id="Package\Data Flow Task\OLE DB Source"
           TopLeft="294,200.416665671186" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="286,432.249997852991" />
         <NodeLayout
           Size="154.5,42"
           Id="Package\Data Flow Task\Derived Column"

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{48D463CD-9C50-40DA-9940-C400CD8039FA}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{55CAA010-4AF9-495B-9B73-DF28E69124B3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -77,6 +77,28 @@
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ETLDateTimeAdded]"
                       name="ETLDateTimeAdded"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDate]"
+                      name="SnapDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -566,6 +588,12 @@
                       cachedName="ETLDateTimeAdded"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETLDateTimeAdded]"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ETLDateTimeAdded]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SnapDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SnapDate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Snapdate]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDate]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -841,6 +869,10 @@
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ETLDateTimeAdded]"
                       dataType="dbTimeStamp"
                       name="ETLDateTimeAdded" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Snapdate]"
+                      dataType="dbTimeStamp"
+                      name="Snapdate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -945,12 +977,16 @@
 	UPRpricemonitorfinal.ISOManualPremiumProdC,
 	UPRpricemonitorfinal.ExposureAL,
 	UPRpricemonitorfinal.ExposureGL
-
+             
 	from STG.UPRBinder
 	left join STG.UPRlatestPolicyDate on UPRlatestPolicyDate.quote_code = UPRBinder.quote_code
 	left join STG.UPRPremium on UPRPremium.quote_code = UPRBinder.quote_code
 	left join STG.UPRBDX on UPRBDX.quote_code = UPRBinder.quote_code
-	left join STG.UPRpricemonitorfinal on UPRpricemonitorfinal.quote_code = UPRBinder.quote_code</property>
+	left join STG.UPRpricemonitorfinal on UPRpricemonitorfinal.quote_code = UPRBinder.quote_code
+declare @pif datetime
+select @pif = getdate ()
+select * from [STG].[UPRFinal] 
+where [STG].[UPRFinal] .effective_dt &lt;= @pif and [STG].[UPRFinal] .expiration_dt &gt;= @pif</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."

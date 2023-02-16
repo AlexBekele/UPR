@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{DB4B9119-3232-462F-B622-9FB0DD0E1448}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{A282F522-2501-4E6E-B5E1-E8C77014457A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -839,7 +839,7 @@
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">declare @pif datetime
 declare @st datetime
 declare @ed datetime
-select @pif = '12/31/2022'
+select @pif = getdate ()
 select @st = dateadd(day,-1800,@pif)
 select @ed = dateadd(day,1800,@pif)
  SELECT 

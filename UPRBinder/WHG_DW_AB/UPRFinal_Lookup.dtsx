@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/13/2023 10:18:47 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHG-VDI-133"
+  DTS:CreatorName="WHGCLOUD\abekele"
+  DTS:DTSID="{0684F627-5C27-4CDE-B621-AF249BA7A7D6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{CC626B08-CBD5-4D55-8443-D9637BC2E7DD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WHG-ALIS-BE.WHG_LIVE_ALIS"
+  DTS:DTSID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::WHGALISBEWHG_LIVE_ALIS_ServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=WHG-ALIS-BE;Initial Catalog=WHG_LIVE_ALIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}WHG-ALIS-BE.WHG_LIVE_ALIS;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -7,44 +7,14 @@
   DTS:CreatorName="WHGCLOUD\abekele"
   DTS:DTSID="{169DD61A-C502-4F85-8275-3DA4E3D6D69D}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{A282F522-2501-4E6E-B5E1-E8C77014457A}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{A8867081-830C-4147-8783-2212DF0BBD67}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}"
-      DTS:ObjectName="WHG-ALIS-BE.WHG_LIVE_ALIS">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISBEWHG_LIVE_ALIS_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-BE;Initial Catalog=WHG_LIVE_ALIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}WHG-ALIS-BE.WHG_LIVE_ALIS;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
-      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_AB">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISDEVWHG_DW_AB_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_AB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{2C0766B3-0871-40BA-A2EC-E11F4172598A}WHG-ALIS-DEV.WHG_DW_AB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -159,7 +129,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -193,8 +163,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -836,7 +806,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">declare @pif datetime
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare @pif datetime
 declare @st datetime
 declare @ed datetime
 select @pif = getdate ()
@@ -955,8 +925,8 @@ select @ed = dateadd(day,1800,@pif)
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
+                  connectionManagerID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2037,7 +2007,7 @@ select @ed = dateadd(day,1800,@pif)
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql12">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -2045,11 +2015,11 @@ select @ed = dateadd(day,1800,@pif)
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="178,43.5"
+          Size="178.285714285715,43.4285714285715"
           Id="Package\Data Flow Task"
           TopLeft="298.5,212.333332278663" />
         <NodeLayout
-          Size="166.5,42"
+          Size="166.285714285715,42.2857142857143"
           Id="Package\Execute SQL Task"
           TopLeft="308.5,112.124999443069" />
         <EdgeLayout

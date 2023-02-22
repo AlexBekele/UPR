@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/26/2023 10:50:19 AM"
@@ -11,40 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{E579FAA3-FDE8-45CA-BBDB-0D39E79E1FF9}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{99A1149B-00E3-441A-9A6F-1E72B0E62A2E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}"
-      DTS:ObjectName="WHG-ALIS-BE.WHG_LIVE_ALIS">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISBEWHG_LIVE_ALIS_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-BE;Initial Catalog=WHG_LIVE_ALIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}WHG-ALIS-BE.WHG_LIVE_ALIS;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
-      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_AB">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISDEVWHG_DW_AB_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_AB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{2C0766B3-0871-40BA-A2EC-E11F4172598A}WHG-ALIS-DEV.WHG_DW_AB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -170,7 +140,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -204,8 +174,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -847,7 +817,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">declare @pif datetime
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">declare @pif datetime
 declare @st datetime
 declare @ed datetime
 select @pif = ?
@@ -966,8 +936,8 @@ select @ed = dateadd(day,1800,@pif)
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
+                  connectionManagerID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>

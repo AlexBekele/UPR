@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/27/2023 9:22:41 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{22765A37-AA2B-417B-BD5C-BD080E624D55}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{4AB156B7-912F-4A86-BE0C-B61EBB068B10}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -25,7 +25,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SnapDateParent">
       <DTS:VariableValue
-        DTS:DataType="7">2/21/2023 2:30:24 PM</DTS:VariableValue>
+        DTS:DataType="7">2/22/2023 10:39:21 AM</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{CE5B9AD8-FEB2-424A-88C0-4A914250E4E6}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{594F46C2-7D79-4F14-9D18-12F37C206662}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -41,7 +41,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_DEV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{E5CBD26B-C8DD-4A25-A7E0-6BFDAF889C58}WHG-ALIS-DEV.WHG_DW_DEV 1;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_DEV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{E5CBD26B-C8DD-4A25-A7E0-6BFDAF889C58}WHG-ALIS-DEV.WHG_DW_DEV 1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -560,11 +560,11 @@
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RiskCompanySK]"
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[RiskCompanySK]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MarketCompanySK]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MarketSK]"
                       cachedDataType="i4"
-                      cachedName="MarketCompanySK"
+                      cachedName="MarketSK"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MarketSK]"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketCompanySK]" />
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketSK]" />
                     <inputColumn
                       refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BusinessTypeSK]"
                       cachedDataType="i4"
@@ -937,25 +937,26 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  M.MarketSK as MarketCompanySK
-      ,r.RiskCompanySK
-	  ,bt.BusinessTypeSK
-	  ,c.SICCodeSK
-	  ,[quote_code]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  
+	  [quote_code]
       ,[effective_dt]
       ,CONVERT(varchar(8), CONVERT(datetime, [effective_dt], 126), 112) as [EffectiveDateSK]
       ,[expiration_dt]
       ,CONVERT(varchar(8), CONVERT(datetime, [expiration_dt], 126), 112) as [ExprirationDateSK]
       ,up.[sic_code]
+	  ,c.SICCodeSK
       ,[WhlsRetail]
       ,[Sic_Group]
       ,[Sic_Type]
       ,[Sic_Category]
       ,[market_company_id]
       ,[risk_company_id]
+	  ,r.RiskCompanySK
       ,[market_company]
+	  ,M.MarketSK 
       ,[risk_company]
       ,[lkp_code]
+	  ,bt.BusinessTypeSK
       ,[policy_number]
       ,[insured_name]
       ,[physical_address_line1]
@@ -998,13 +999,13 @@
       --,[SICCodeSK]
       ,CONVERT(varchar(8), CONVERT(datetime, [Snapdate], 126), 112) [SnapDateSK]
   FROM [WHG_DW_AB].[STG].[UPRFinal] up
-left join [WHG_DW_DEV].[DW].[DimMarket] M   
+left join [WHG-ALIS-BE].[WHG_DW_PROD].[DW].[DimMarket] M   
       on up.market_company_id = M.companycode
-left join[WHG_DW_DEV].[DW].[DimRiskCompany]  R
+left join [WHG-ALIS-BE].[WHG_DW_PROD].[DW].[DimRiskCompany]  R
    on up.risk_company_id = R.companycode
-left join [WHG_DW_DEV].[DW].[DimBusinessType] bt 
+left join [WHG-ALIS-BE].[WHG_DW_PROD].[DW].[DimBusinessType] bt 
    on bt.LkpCode = up.lkp_code
-left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
+left join [WHG-ALIS-BE].[WHG_DW_PROD].[DW].[DimSIC_Codes] c
    on c.SIC_Code = up.sic_code</property>
                 <property
                   dataType="System.String"
@@ -1621,15 +1622,6 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                       name="SnapDateSK"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketCompanySK]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MarketCompanySK]"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketCompanySK]"
-                      name="MarketCompanySK"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[RiskCompanySK]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -1655,6 +1647,15 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SICCodeSK]"
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SICCodeSK]"
                       name="SICCodeSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MarketSK]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[MarketSK]"
+                      name="MarketSK"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1964,10 +1965,6 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                       length="8"
                       name="SnapDateSK" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MarketCompanySK]"
-                      dataType="i4"
-                      name="MarketCompanySK" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RiskCompanySK]"
                       dataType="i4"
                       name="RiskCompanySK" />
@@ -1979,6 +1976,10 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SICCodeSK]"
                       dataType="i4"
                       name="SICCodeSK" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MarketSK]"
+                      dataType="i4"
+                      name="MarketSK" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1986,11 +1987,6 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MarketCompanySK]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MarketCompanySK]"
-                      name="MarketCompanySK" />
                     <outputColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RiskCompanySK]"
                       dataType="i4"
@@ -2086,6 +2082,11 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
                       length="150"
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[risk_company]"
                       name="risk_company" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MarketSK]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MarketSK]"
+                      name="MarketSK" />
                     <outputColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lkp_code]"
                       codePage="1252"
@@ -2490,33 +2491,33 @@ left join [WHG_DW_DEV].[DW].[DimSIC_Codes] c
         <NodeLayout
           Size="173,42"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="425,340.16666497704" />
+          TopLeft="427,335.833331665231" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
           TopLeft="526.75,254.333332278662">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-15.25,85.833332698378"
+              EndConnector="-13.25,81.4999993865685"
               Start="0,0"
-              End="-15.25,78.333332698378">
+              End="-13.25,73.9999993865685">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.916666349189" />
+                    End="0,36.7499996932843" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,38.916666349189"
-                    Point2="0,42.916666349189"
-                    Point3="-4,42.916666349189" />
+                    Point1="0,36.7499996932843"
+                    Point2="0,40.7499996932843"
+                    Point3="-4,40.7499996932843" />
                   <mssgle:LineSegment
-                    End="-11.25,42.916666349189" />
+                    End="-9.25,40.7499996932843" />
                   <mssgle:CubicBezierSegment
-                    Point1="-11.25,42.916666349189"
-                    Point2="-15.25,42.916666349189"
-                    Point3="-15.25,46.916666349189" />
+                    Point1="-9.25,40.7499996932843"
+                    Point2="-13.25,40.7499996932843"
+                    Point3="-13.25,44.7499996932843" />
                   <mssgle:LineSegment
-                    End="-15.25,78.333332698378" />
+                    End="-13.25,73.9999993865685" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

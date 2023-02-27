@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/30/2023 12:45:21 PM"
@@ -11,26 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{76704473-D710-45D7-BBF3-44A4B05F6182}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{9E7743E3-95C6-4EF7-A1E7-156C23087B2B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{B4BEC027-0F62-496C-BC55-32E2F5461E9A}"
-      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_AB">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISDEVWHG_DW_AB_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_AB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{B4BEC027-0F62-496C-BC55-32E2F5461E9A}WHG-ALIS-DEV.WHG_DW_AB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -178,7 +162,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -212,8 +196,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -957,7 +941,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
 	UPRBinder.quote_code,
 	UPRlatestPolicyDate.effective_dt,
 	UPRlatestPolicyDate.expiration_dt,
@@ -1039,8 +1023,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2239,7 +2223,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{B4BEC027-0F62-496C-BC55-32E2F5461E9A}"
+          SQLTask:Connection="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
           SQLTask:SqlStatementSource="Truncate table STG.UPRFinal" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/27/2023 3:48:37 PM"
@@ -11,40 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{50033B0C-0482-45BD-9B94-86C04DDC7A8B}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{3C0966D3-4B2E-4663-8F38-D93D5F85D55F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{325B7361-5A68-4A4E-A461-9DA0C00DDE4A}"
-      DTS:ObjectName="WHG-ALIS-BE.WHG_LIVE_ALIS">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISBEWHG_LIVE_ALIS_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-BE;Initial Catalog=WHG_LIVE_ALIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{325B7361-5A68-4A4E-A461-9DA0C00DDE4A}WHG-ALIS-BE.WHG_LIVE_ALIS;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{BA34E82C-DF7B-4493-A4A1-7DE88F60116D}"
-      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_AB 1">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISDEVWHG_DW_AB_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_AB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BA34E82C-DF7B-4493-A4A1-7DE88F60116D}WHG-ALIS-DEV.WHG_DW_AB 1;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -159,7 +129,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -193,8 +163,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB 1]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB 1]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -296,7 +266,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  
 max(PriceMonitor.PriceMonitorID) as PriceMonitorID,
 LineDetailUMBXSCAS.ALISLineID as quote_code
 
@@ -336,8 +306,8 @@ group by LineDetailUMBXSCAS.ALISLineID</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
+                  connectionManagerID="{FBB3D3D0-8F7B-433C-95D7-0B46870D964D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-BE.WHG_LIVE_ALIS]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -444,7 +414,7 @@ group by LineDetailUMBXSCAS.ALISLineID</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{BA34E82C-DF7B-4493-A4A1-7DE88F60116D}"
+          SQLTask:Connection="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
           SQLTask:SqlStatementSource="Truncate table STG.UPRMaxpricemonitorid" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

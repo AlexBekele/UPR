@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/30/2023 12:16:08 PM"
@@ -11,26 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{B4A01411-12BC-4F78-9E24-934580EC0A0C}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{3A44CB67-FDAB-4003-8C40-68C6CB3212DC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{6A720DAC-DD17-475E-B439-1579F87E1BFE}"
-      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_AB">
-      <DTS:PropertyExpression
-        DTS:Name="ServerName">@[$Project::WHGALISDEVWHG_DW_AB_ServerName]</DTS:PropertyExpression>
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_AB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{6A720DAC-DD17-475E-B439-1579F87E1BFE}WHG-ALIS-DEV.WHG_DW_AB;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -145,7 +129,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -179,8 +163,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -626,7 +610,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  
 UPRPricemonitor.PriceMonitorID,
 UPRPricemonitor.quote_code,
 UPRPricemonitor.umbrella_limit,
@@ -682,8 +666,8 @@ inner join stg.UPRMaxpricemonitorid on uprmaxpricemonitorid.PriceMonitorID = UPR
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
-                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
+                  connectionManagerID="{2C0766B3-0871-40BA-A2EC-E11F4172598A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_AB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1384,7 +1368,7 @@ inner join stg.UPRMaxpricemonitorid on uprmaxpricemonitorid.PriceMonitorID = UPR
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{6A720DAC-DD17-475E-B439-1579F87E1BFE}"
+          SQLTask:Connection="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
           SQLTask:SqlStatementSource="Truncate table STG.UPRpricemonitorfinal" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WHG-ALIS-BE.WHG_DW_PROD"
+  DTS:DTSID="{FDBBA7DB-AECF-4096-B255-5EDD4E451C61}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=WHG-ALIS-BE;Initial Catalog=WHG_DW_PROD;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FDBBA7DB-AECF-4096-B255-5EDD4E451C61}WHG-ALIS-BE.WHG_DW_PROD;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

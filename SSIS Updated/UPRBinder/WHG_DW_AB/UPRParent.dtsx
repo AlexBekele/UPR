@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="43"
-  DTS:VersionGUID="{BF7D59E7-DE93-4BA1-B230-5A2D8C26A6D0}">
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{87E828D0-4D9F-4C95-A0F1-3378B629CFFA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -25,7 +25,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SnapDateParent">
       <DTS:VariableValue
-        DTS:DataType="7">2/24/2023 2:54:57 PM</DTS:VariableValue>
+        DTS:DataType="7">3/1/2023 3:26:20 PM</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -43,6 +43,23 @@
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
           <PackageName>FactUPRFinal.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute Package Task"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{2195C21A-9BDF-46FC-9CBD-FB91E6809518}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute Package Task"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>DimUPRSic_Codes.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -244,6 +261,14 @@
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Execute UPRExpiration_Date" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{4B38BE0F-C4C1-47C7-B539-FCA2AE1C0FB1}"
+      DTS:From="Package\Execute FactUPRFinal"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Execute Package Task" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{E0C9B119-CDC7-42E3-93C9-80816513ACBA}"
@@ -323,7 +348,7 @@
         <NodeLayout
           Size="185,42"
           Id="Package\Execute FactUPRFinal"
-          TopLeft="44,1014.74999588355" />
+          TopLeft="44.5,990.374996004622" />
         <NodeLayout
           Size="163.5,42"
           Id="Package\Execute UPRBDX"
@@ -564,18 +589,44 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="138.125,950.333333408667">
+          TopLeft="138.375,950.333333408667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64.4166624748873"
+              EndConnector="0,40.041662595955"
               Start="0,0"
-              End="0,56.9166624748873">
+              End="0,32.541662595955">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.9166624748873" />
+                    End="0,32.541662595955" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Execute Package Task"
+          TopLeft="43,1068.83332943751" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="136.5,1032.37499600462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.4583334328856"
+              Start="0,0"
+              End="0,28.9583334328856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9583334328856" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

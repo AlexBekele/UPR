@@ -7,12 +7,12 @@
   DTS:CreatorName="WHGCLOUD\abekele"
   DTS:DTSID="{FBE235AE-2F73-455D-AC15-288A1E45D999}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{F4D451FE-D83E-4F26-BBAC-B5EFE981846E}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{04701E29-BC27-4DDE-B7A4-B0C4719858AC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -25,7 +25,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SnapDateParent">
       <DTS:VariableValue
-        DTS:DataType="7">3/1/2023 3:46:20 PM</DTS:VariableValue>
+        DTS:DataType="7">3/1/2023 5:46:53 PM</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -350,51 +350,51 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="185.142857142858,42.2857142857143"
-          Id="Package\Execute FactUPRFinal"
-          TopLeft="44.5,990.374996004622" />
-        <NodeLayout
-          Size="186.285714285715,42.2857142857143"
+          Size="186,42"
           Id="Package\DimUPRSic_code load"
           TopLeft="43,1068.83332943751" />
         <NodeLayout
-          Size="163.428571428572,42.2857142857143"
+          Size="185,42.5"
+          Id="Package\Execute FactUPRFinal"
+          TopLeft="44.5,990.374996004622" />
+        <NodeLayout
+          Size="163.5,42.5"
           Id="Package\Execute UPRBDX"
           TopLeft="59.5,516.041666663976" />
         <NodeLayout
-          Size="196,42.2857142857143"
+          Size="196,42.5"
           Id="Package\Execute UPRBinder_Pkg"
           TopLeft="43.25,3.87500000807146" />
         <NodeLayout
-          Size="216.571428571429,42.2857142857143"
+          Size="216.5,42.5"
           Id="Package\Execute UPRExpiration_Date"
           TopLeft="33.5,209.5" />
         <NodeLayout
-          Size="165.142857142858,42.2857142857143"
+          Size="165,42.5"
           Id="Package\Execute UPRFinal"
           TopLeft="57.25,908.333333408667" />
         <NodeLayout
-          Size="221.142857142858,42.2857142857143"
+          Size="221,42.5"
           Id="Package\Execute UPRLatestPolicyDate"
           TopLeft="25.5000000000001,311.5" />
         <NodeLayout
-          Size="228,42.2857142857143"
+          Size="228,42.5"
           Id="Package\Execute UPRMaxpricemonitorid"
           TopLeft="27.7500000000001,719.5" />
         <NodeLayout
-          Size="201.142857142858,42.2857142857143"
+          Size="201,42.5"
           Id="Package\Execute UPRMaxQuoteID"
           TopLeft="41.25,107.5" />
         <NodeLayout
-          Size="184,42.2857142857143"
+          Size="184,42.5"
           Id="Package\Execute UPRPremium"
           TopLeft="49.75,413.5" />
         <NodeLayout
-          Size="201.142857142858,42.2857142857143"
+          Size="201,42.5"
           Id="Package\Execute UPRPricemonitor"
           TopLeft="41.25,617.5" />
         <NodeLayout
-          Size="218.857142857143,42.2857142857143"
+          Size="219,42.5"
           Id="Package\Execute UPRpricemonitorfinal"
           TopLeft="32.25,821.5" />
         <EdgeLayout
@@ -443,18 +443,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="136.5,1032.37499600462">
+          TopLeft="136.5,1032.87499600462">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.4583334328856"
+              EndConnector="0,35.9583334328879"
               Start="0,0"
-              End="0,28.9583334328856">
+              End="0,28.4583334328879">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.9583334328856" />
+                    End="0,28.4583334328879" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

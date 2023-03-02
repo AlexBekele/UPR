@@ -11,10 +11,24 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{30E15E31-4342-4460-9EB5-C0BADE12666D}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{9598918D-8F57-452B-92CB-AA5241EA98CE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_DEV]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7AD30284-EE48-40AA-9A0F-EC80DDD2C1FF}"
+      DTS:ObjectName="WHG-ALIS-DEV.WHG_DW_DEV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WHG-ALIS-DEV;Initial Catalog=WHG_DW_DEV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{7AD30284-EE48-40AA-9A0F-EC80DDD2C1FF}WHG-ALIS-DEV.WHG_DW_DEV;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
@@ -30,11 +44,13 @@
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{A49720B5-ED39-46B0-AD43-05180A261C9B}"
-      DTS:IncludeInDebugDump="6789"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_STR,4,1252)YEAR( DATEADD( &quot;dd&quot;, -1, @[$Package::SnapDate] ))&#xA;+(DT_STR,4,1252)MONTH( DATEADD( &quot;dd&quot;,-1, @[$Package::SnapDate] ))+(DT_STR,4,1252) &#xA;DAY(DATEADD( &quot;dd&quot;, -1, @[$Package::SnapDate] ))"
+      DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="SnapDate">
+      DTS:ObjectName="SnapDateSK">
       <DTS:VariableValue
-        DTS:DataType="3">0</DTS:VariableValue>
+        DTS:DataType="8">2023228</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -95,6 +111,30 @@
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
                           name="FriendlyExpression">@[$Package::SnapDate]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDateSK]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDateSK]"
+                      name="SnapDateSK"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,8,1252)@[User::SnapDateSK]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,8,1252)@[User::SnapDateSK]</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -247,6 +287,14 @@
                       cachedName="SnapDate"
                       externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Snapdate]"
                       lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SnapDateSK]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="SnapDateSK"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SnapDateSK]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[SnapDateSK]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -349,15 +397,15 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
-      [SIC_CodeID]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [SICCodeSK]
+      ,[SIC_CodeID]
       ,[SIC_Code]
       ,[SIC_Code_Description]
       ,[SIC_Code_Category]
       ,[SIC_Code_Parent]
       ,[ETLDateTimeAdded]
       ,[Business_Division]
-  FROM [WHG_DW_PROD].[DW].[DimSIC_Codes]</property>
+  FROM [WHG_DW_DEV].[DW].[DimSIC_Codes]</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -383,8 +431,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{FDBBA7DB-AECF-4096-B255-5EDD4E451C61}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[WHG-ALIS-BE.WHG_DW_PROD]"
+                  connectionManagerID="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_DEV]"
+                  connectionManagerRefId="Package.ConnectionManagers[WHG-ALIS-DEV.WHG_DW_DEV]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -466,6 +514,15 @@
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Business_Division]"
                       name="Business_Division"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SICCodeSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SICCodeSK]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[SICCodeSK]"
+                      name="SICCodeSK"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -507,6 +564,10 @@
                       dataType="str"
                       length="100"
                       name="Business_Division" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SICCodeSK]"
+                      dataType="i4"
+                      name="SICCodeSK" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -514,6 +575,11 @@
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SICCodeSK]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SICCodeSK]"
+                      name="SICCodeSK" />
                     <outputColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SIC_CodeID]"
                       dataType="i4"
@@ -592,7 +658,33 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{269575DB-15CF-4CF0-A5D8-1E63E1EABE28}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2C0766B3-0871-40BA-A2EC-E11F4172598A}"
+          SQLTask:SqlStatementSource="Truncate table [DW].[DimUPRSIC_Codes]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D1F64278-9C25-4255-B090-916564340C8E}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -604,11 +696,49 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="130,42"
+          Size="151.5,42"
           Id="Package\Data Flow Task"
           TopLeft="505.25,161.958332528878" />
+        <NodeLayout
+          Size="166.5,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="468.5,64.4583330131653" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="551.75,106.458333013165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.25,55.4999995157127"
+              Start="0,0"
+              End="29.25,47.9999995157127">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7499997578563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.7499997578563"
+                    Point2="0,27.7499997578563"
+                    Point3="4,27.7499997578563" />
+                  <mssgle:LineSegment
+                    End="25.25,27.7499997578563" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.25,27.7499997578563"
+                    Point2="29.25,27.7499997578563"
+                    Point3="29.25,31.7499997578563" />
+                  <mssgle:LineSegment
+                    End="29.25,47.9999995157127" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -620,25 +750,29 @@
         <NodeLayout
           Size="153.5,42"
           Id="Package\Data Flow Task\OLE DB Source"
-          TopLeft="771,357" />
+          TopLeft="770.5,355.375000008071" />
         <NodeLayout
           Size="154.5,42"
           Id="Package\Data Flow Task\Derived Column"
           TopLeft="766,468" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="753,573" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="845.5,399">
+          TopLeft="845.25,397.375000008071">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,69"
+              EndConnector="0,70.6249999919285"
               Start="0,0"
-              End="0,61.5">
+              End="0,63.1249999919285">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.5" />
+                    End="0,63.1249999919285" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -647,10 +781,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="753,573" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
           TopLeft="841.375,510">
